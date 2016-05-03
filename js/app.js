@@ -20,7 +20,10 @@ var app = {
 
         app.stage.addChild(square);
 
-        app.stage.update();
+        createjs.Ticker.setFPS(60);
+        createjs.Ticker.addEventListener('tick', app.stage);
+
+        TweenLite.to(square, 2, { x:100 })
     }
 };
 
