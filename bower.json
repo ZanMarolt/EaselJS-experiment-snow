@@ -1,0 +1,22 @@
+{
+  "name": "create-js-snow",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Zan Marolt <marolt.zan@hotmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "EaselJS": "^0.8.2",
+    "gsap": "greensock#^1.18.4",
+    "jquery": "^2.2.3"
+  }
+}
