@@ -3,7 +3,7 @@ var app = {
     particleArray: [],
     stage:null,
 
-    NUM_PARTICLES: 100,
+    NUM_PARTICLES: 50,
 
     init:function(){
 
