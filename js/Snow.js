@@ -2,13 +2,14 @@
  * Created by zanmarolt on 5/3/16.
  */
 
-var Snow = function(container){
+var Snow = function(container, wind){
 
     this.container = container;
+    this.wind = wind;
     this.distance = Math.random()+0.3;
 
     this._draw();
-    this._StartWind();
+    this._windBlow();
 
     createjs.Ticker.addEventListener('tick', this._onAnimation.bind(this));
 
@@ -68,9 +69,20 @@ Snow.prototype._reset = function(){
 
 };
 
+Snow.prototype._windBlow = function(){
+
+    var pX = this.particle.x;
+
+    TweenLite.to(this.particle, Math.random()*2+1, {
+        x:(pX+this.wind.force)*this.distance,
+        onComplete:this._windBlow.bind(this)
+    });
+};
+
 Snow.prototype._onAnimation = function(){
 
     this.particle.y += (1+this.distance);
+    this.particle.x = this.wind.force;
 
     this.positionCheck();
 
