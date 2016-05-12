@@ -55,16 +55,33 @@ Snow.prototype.positionCheck = function(){
 
     if(this.particle.y > this.container.canvas.clientHeight){
 
-        this._reset();
+        this._resetY();
+
+    }
+    if(this.particle.x > this.container.canvas.clientWidth){
+
+        this._resetX();
 
     }
 
 };
 
-Snow.prototype._reset = function(){
+Snow.prototype._resetY = function(){
+
 
     this.distance = Math.random()+0.3;
-    this.particle.y = -50;
+    this.particle.y = -10;
+    this.particle.scaleX = this.particle.scaleY = this.distance+0.3;
+
+
+
+};
+
+Snow.prototype._resetX = function(){
+
+
+    this.distance = Math.random()+0.3;
+    this.particle.x = 10;
     this.particle.scaleX = this.particle.scaleY = this.distance+0.3;
 
 };
@@ -72,17 +89,23 @@ Snow.prototype._reset = function(){
 Snow.prototype._windBlow = function(){
 
     var pX = this.particle.x;
+    var min = -200;
+    var max = 1400;
 
-    TweenLite.to(this.particle, Math.random()*2+1, {
-        x:(pX+this.wind.force)*this.distance,
-        onComplete:this._windBlow.bind(this)
+    var minT = 50;
+    var maxT = 100;
+
+
+    TweenLite.to(this.particle, Math.floor(Math.random() * (maxT - minT + 1)) + minT, {
+        x:(pX+(Math.floor(Math.random() * (max - min + 1)) + min)),
+        onComplete: this._windBlow.bind(this)
     });
+
 };
 
 Snow.prototype._onAnimation = function(){
 
     this.particle.y += (1+this.distance);
-    this.particle.x = this.wind.force;
 
     this.positionCheck();
 
